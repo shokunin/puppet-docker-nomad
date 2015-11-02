@@ -1,0 +1,10 @@
+---
+
+foo: bar
+
+#classes:
+#  - docker::images:
+#      ubuntu:
+#        image_tag: 'precise'
+#
+

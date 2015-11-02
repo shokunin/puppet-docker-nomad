@@ -1,0 +1,9 @@
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /vagrant/puppet/ext/hieradata
+:hierarchy:
+  - "%{::hostname}"
+  - "common"
+:merge_behavior: deeper

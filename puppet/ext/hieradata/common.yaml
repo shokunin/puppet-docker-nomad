@@ -1,0 +1,4 @@
+---
+docker::tcp_bind: tcp://0.0.0.0:2375
+docker::version: 1.7.1
+docker::package_name: lxc-docker-1.7.1

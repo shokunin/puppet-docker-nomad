@@ -1,0 +1,8 @@
+.tmp
+.librarian
+.vagrant
+puppet/modules/*
+.rvmrc
+Gemfile.lock
+terrform/terraform.tfstate
+terrform/terraform.tfstate.backup

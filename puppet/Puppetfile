@@ -1,0 +1,32 @@
+mod 'vagrant',
+  :git => 'https://github.com/shokunin/vagrant.git',
+  :ref => 'master'
+
+mod 'unix_base',
+  :git => 'https://github.com/shokunin/unix_base.git',
+  :ref => 'master'
+
+mod 'stdlib',
+  :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git',
+  :ref => 'master'
+
+mod 'docker',
+  :git => 'https://github.com/garethr/garethr-docker.git',
+  :ref => 'master'
+
+mod 'apt',
+  :git => 'https://github.com/puppetlabs/puppetlabs-apt.git',
+  :tag => '1.8.0'
+
+mod 'epel',
+  :git => 'git://github.com/stahnma/puppet-module-epel.git',
+  :ref => 'master'
+
+mod 'consul',
+  :git => 'https://github.com/solarkennedy/puppet-consul.git'
+
+mod 'staging',
+  :git => 'https://github.com/nanliu/puppet-staging.git'
+
+mod 'nomadproject',
+  :git => 'https://github.com/shokunin/maguec-nomadproject.git'
