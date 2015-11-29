@@ -30,3 +30,7 @@ mod 'staging',
 
 mod 'nomadproject',
   :git => 'https://github.com/shokunin/maguec-nomadproject.git'
+
+mod 'ubuntu_pkgs',
+  :git => 'https://github.com/shokunin/ubuntu_pkgs.git',
+  :ref => 'ensure'

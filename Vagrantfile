@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.provision :puppet do |puppet|
       puppet.hiera_config_path = "puppet/ext/hiera.yaml"
       puppet.manifests_path = "puppet/manifests"
-      puppet.options = ["--modulepath", "/tmp/vagrant-puppet/puppet/modules"]
+      puppet.options = ["--modulepath", "/tmp/vagrant-puppet/puppet/modules", "--parser", "future"]
       puppet.manifest_file = "nomaster.pp"
     end
   end #server
@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.provision :puppet do |puppet|
       puppet.hiera_config_path = "puppet/ext/hiera.yaml"
       puppet.manifests_path = "puppet/manifests"
-      puppet.options = ["--modulepath", "/tmp/vagrant-puppet/puppet/modules"]
+      puppet.options = ["--modulepath", "/tmp/vagrant-puppet/puppet/modules", "--parser", "future"]
       puppet.manifest_file = "node.pp"
     end
   end #node
@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.provision :puppet do |puppet|
       puppet.hiera_config_path = "puppet/ext/hiera.yaml"
       puppet.manifests_path = "puppet/manifests"
-      puppet.options = ["--modulepath", "/tmp/vagrant-puppet/puppet/modules"]
+      puppet.options = ["--modulepath", "/tmp/vagrant-puppet/puppet/modules", "--parser", "future"]
       puppet.manifest_file = "node.pp"
     end
   end #node

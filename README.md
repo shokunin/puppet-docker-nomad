@@ -26,6 +26,6 @@ vagrant up
 running
 -------
 ```
-export NOMAD_ADDR="http://`facter ipaddress`:4647"
+export NOMAD_ADDR="http://`facter ipaddress_eth1`:4646"
 ```
 

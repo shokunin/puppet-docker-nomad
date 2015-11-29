@@ -1,4 +1,10 @@
 ---
+classes:
+  - ubuntu_pkgs
+
 docker::tcp_bind: tcp://0.0.0.0:2375
-docker::version: 1.7.1
-docker::package_name: lxc-docker-1.7.1
+docker::version: 1.9.1-0~trusty
+docker::package_name: docker-engine
+
+ubuntu_pkgs:
+  - unzip

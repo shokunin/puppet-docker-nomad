@@ -2,10 +2,11 @@ include vagrant
 include unix_base
 include docker
 include stdlib
+include ubuntu_pkgs
 
 class { '::consul':
   version => '0.5.2',
-  require => Class['unix_base', 'vagrant'],
+  require => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
   config_hash     => {
     'data_dir'    => '/opt/consul',
     'datacenter'  => 'vagrant',
@@ -18,12 +19,14 @@ class { '::consul':
 }
 
 class { '::nomadproject':
-  require        => Class['unix_base'],
   server_list    => ['172.16.3.101'],
+  bind_interface => 'eth1',
+  require        => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
   config_hash    => {
     'log_level'  => 'DEBUG',
     'region'     => 'vagrant',
     'datacenter' => 'vagrant1',
+    'bind_addr'  => $::ipaddress_eth1,
   }
 }
 
