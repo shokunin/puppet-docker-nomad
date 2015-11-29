@@ -23,3 +23,9 @@ vagrant up
 
 ```
 
+running
+-------
+```
+export NOMAD_ADDR="http://`facter ipaddress`:4647"
+```
+
