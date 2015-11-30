@@ -5,16 +5,20 @@ include stdlib
 include ubuntu_pkgs
 
 class { '::consul':
-  version => '0.5.2',
-  require => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
-  config_hash     => {
-    'data_dir'    => '/opt/consul',
-    'datacenter'  => 'vagrant',
-    'log_level'   => 'INFO',
-    'client_addr' => $::ipaddress_eth1,
-    'bind_addr'   => $::ipaddress_eth1,
-    'node_name'   => $::hostname,
-    'retry_join'  => ['172.16.3.101'],
+  version              => '0.5.2',
+  require              => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
+  config_hash          => {
+    'bootstrap_expect' => 2,
+    'client_addr'      => "0.0.0.0",
+    'advertise_addr'   => $::ipaddress_eth1,
+    'data_dir'         => '/opt/consul',
+    'datacenter'       => 'vagrant',
+    'log_level'        => 'INFO',
+    'node_name'        => $::hostname,
+    'retry_join'       => ['172.16.3.101'],
+    'server'           => true,
+    'ui_dir'           => '/opt/consul/ui',
+
   }
 }
 

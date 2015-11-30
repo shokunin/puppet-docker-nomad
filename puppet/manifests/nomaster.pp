@@ -10,8 +10,9 @@ class { '::consul':
   version              => '0.5.2',
   require              => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
   config_hash          => {
-    'bootstrap_expect' => 1,
-    'client_addr'      => '0.0.0.0',
+    'bootstrap_expect' => 2,
+    'client_addr'      => "0.0.0.0",
+    'advertise_addr'   => $::ipaddress_eth1,
     'data_dir'         => '/opt/consul',
     'datacenter'       => 'vagrant',
     'log_level'        => 'INFO',

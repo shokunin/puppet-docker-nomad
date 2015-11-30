@@ -25,7 +25,14 @@ vagrant up
 
 running
 -------
+
+An example job is added to the nomad master
+
 ```
 export NOMAD_ADDR="http://`facter ipaddress_eth1`:4646"
+nomad run /etc/example_job.nomad 
+nomad status
+nomad status nomad-example
+
 ```
 
