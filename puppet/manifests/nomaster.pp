@@ -34,3 +34,30 @@ class { '::nomadproject':
     'bind_addr'  => $::ipaddress_eth1,
   }
 }
+
+##########################################################################################
+#   Setup the haproxy/template pair
+package { 'haproxy':
+  ensure => installed,
+}
+
+file { '/etc/default/haproxy':
+  ensure  => present,
+  owner   => root,
+  group   => root,
+  mode    => '0644',
+  content => "ENABLED=1\n",
+}
+
+
+#file { '/usr/local/bin/consul-template':
+#  ensure => present,
+#  owner  => root,
+#  group  => root,
+#  mode   => '0644',
+#  source => 'puppet:///consul-template',
+#}
+
+#consul-template -consul=localhost:8500  -template "/etc/haproxy/haproxy.ctmpl:/etc/haproxy/haproxy.cfg:service haproxy reload"
+
+

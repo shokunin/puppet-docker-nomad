@@ -7,6 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.host_name = 'nomaster'
     server.vm.network "forwarded_port", guest: 8500, host: 8500
     server.vm.network "forwarded_port", guest: 2378, host: 2378
+    server.vm.network "forwarded_port", guest: 3000, host: 3000
     server.vm.network "private_network", ip: "172.16.3.101"
     server.vm.synced_folder "puppet/modules", "/tmp/vagrant-puppet/puppet/modules"
     server.vm.provision :puppet do |puppet|
