@@ -37,8 +37,17 @@ class { '::nomadproject':
 
 ##########################################################################################
 #   Setup the haproxy/template pair
+
+apt::source { 'haproxy-ppa':
+  location   => 'http://ppa.launchpad.net/vbernat/haproxy-1.5/ubuntu ',
+  repos      => 'main',
+  key        => 'CFFB779AADC995E4F350A060505D97A41C61B9CD',
+  key_server => 'pgp.mit.edu',
+}
+
 package { 'haproxy':
-  ensure => installed,
+  ensure  => present,
+  require => Apt::Source['haproxy-ppa'],
 }
 
 file { '/etc/default/haproxy':
