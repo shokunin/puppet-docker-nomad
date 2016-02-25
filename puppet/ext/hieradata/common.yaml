@@ -6,5 +6,7 @@ docker::tcp_bind: tcp://0.0.0.0:2375
 docker::version: 1.9.1-0~trusty
 docker::package_name: docker-engine
 
+nomadproject::version: 0.3.0
+
 ubuntu_pkgs:
   - unzip
