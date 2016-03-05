@@ -1,0 +1,59 @@
+job "mysql" {
+        datacenters = ["vagrant1"]
+        constraint {
+                attribute = "${attr.kernel.name}"
+                value = "linux"
+        }
+
+
+	update {
+		stagger = "10s"
+		max_parallel = 1
+	}
+
+	group "mysql" {
+		count = 1
+		restart {
+			attempts = 10
+			interval = "5m"
+			delay = "25s"
+			mode = "delay"
+		}
+		task "mysql" {
+			driver = "docker"
+			config {
+				image = "mysql:latest"
+				port_map {
+					p_3306 = 3306
+				}
+			}
+                        service {
+                               name = "${TASKGROUP}"
+                               tags = ["tcp-service"]
+                               port = "p_3306"
+                               check {
+                                       type = "tcp"
+                                       interval = "10s"
+                                       timeout = "2s"
+                               }
+                        }
+                        env {
+                          MYSQL_ROOT_PASSWORD = "8675309"
+                          MYSQL_DATABASE = "customers"
+                          MYSQL_USER = "chris"
+                          MYSQL_PASSWORD = "chris"
+                        }
+			resources {
+				cpu = 500 # 500 Mhz
+				memory = 256 # 256MB
+				network {
+					mbits = 10
+					port "p_3306" {
+					}
+				}
+			}
+			
+		}
+	}
+}
+

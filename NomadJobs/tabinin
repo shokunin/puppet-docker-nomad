@@ -1,0 +1,60 @@
+job "tabinin" {
+        datacenters = ["vagrant1"]
+        constraint {
+                attribute = "${attr.kernel.name}"
+                value = "linux"
+        }
+
+
+	update {
+		stagger = "10s"
+		max_parallel = 1
+	}
+
+	group "tabinin" {
+		count = 1
+		restart {
+			attempts = 10
+			interval = "5m"
+			delay = "25s"
+			mode = "delay"
+		}
+		task "tabinin" {
+			driver = "docker"
+			config {
+				image = "maguec/tabinin:latest"
+				port_map {
+					p_4000 = 4000
+				}
+			}
+                        service {
+                                name = "${TASKGROUP}"
+                                tags = ["public-web-service"]
+                                port = "p_4000"
+                                check {
+                                        name = "alive"
+                                        type = "http"
+					path = "/"
+                                        interval = "10s"
+                                        timeout = "2s"
+                                }
+                        }
+                        env {
+                          NOMAD_API = "http://172.16.3.101:4646"
+                          NOMAD_CLUSTER = "vagrant"
+                          CONSUL_CLUSTER = "vagrant"
+                        }
+			resources {
+				cpu = 500 # 500 Mhz
+				memory = 256 # 256MB
+				network {
+					mbits = 10
+					port "p_4000" {
+					}
+				}
+			}
+			
+		}
+	}
+}
+

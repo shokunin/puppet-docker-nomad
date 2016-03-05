@@ -3,11 +3,12 @@ include unix_base
 include stdlib 
 include docker 
 include ubuntu_pkgs 
+include consul_haproxy 
 
 hiera_include('classes', [])
 
 class { '::consul':
-  version              => '0.5.2',
+  version              => '0.6.3',
   require              => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
   config_hash          => {
     'bootstrap_expect' => 2,
@@ -34,39 +35,4 @@ class { '::nomadproject':
     'bind_addr'  => $::ipaddress_eth1,
   }
 }
-
-##########################################################################################
-#   Setup the haproxy/template pair
-
-apt::source { 'haproxy-ppa':
-  location   => 'http://ppa.launchpad.net/vbernat/haproxy-1.5/ubuntu ',
-  repos      => 'main',
-  key        => 'CFFB779AADC995E4F350A060505D97A41C61B9CD',
-  key_server => 'pgp.mit.edu',
-}
-
-package { 'haproxy':
-  ensure  => present,
-  require => Apt::Source['haproxy-ppa'],
-}
-
-file { '/etc/default/haproxy':
-  ensure  => present,
-  owner   => root,
-  group   => root,
-  mode    => '0644',
-  content => "ENABLED=1\n",
-}
-
-
-#file { '/usr/local/bin/consul-template':
-#  ensure => present,
-#  owner  => root,
-#  group  => root,
-#  mode   => '0644',
-#  source => 'puppet:///consul-template',
-#}
-
-#consul-template -consul=localhost:8500  -template "/etc/haproxy/haproxy.ctmpl:/etc/haproxy/haproxy.cfg:service haproxy reload"
-
 

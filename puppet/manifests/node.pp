@@ -5,7 +5,7 @@ include stdlib
 include ubuntu_pkgs
 
 class { '::consul':
-  version              => '0.5.2',
+  version              => '0.6.3',
   require              => Class['unix_base', 'vagrant', 'ubuntu_pkgs'],
   config_hash          => {
     'bootstrap_expect' => 2,
