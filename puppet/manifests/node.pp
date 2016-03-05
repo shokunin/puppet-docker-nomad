@@ -1,8 +1,3 @@
-include vagrant
-include unix_base
-include docker
-include stdlib
-include ubuntu_pkgs
 
 class { '::consul':
   version              => '0.6.3',

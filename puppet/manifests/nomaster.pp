@@ -1,8 +1,3 @@
-include vagrant
-include unix_base
-include stdlib 
-include docker 
-include ubuntu_pkgs 
 include consul_haproxy 
 
 hiera_include('classes', [])

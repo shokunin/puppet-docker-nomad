@@ -1,6 +1,10 @@
 ---
 classes:
   - ubuntu_pkgs
+  - vagrant
+  - unix_base
+  - stdlib
+  - docker
 
 docker::tcp_bind: tcp://0.0.0.0:2375
 docker::version: 1.9.1-0~trusty
