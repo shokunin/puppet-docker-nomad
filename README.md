@@ -59,3 +59,5 @@ or to view the running services
 
 
 
+To view your HAProxy status
+[http://localhost:2112/](http://localhost:2112) with the stats/stats2 credentials
