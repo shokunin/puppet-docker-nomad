@@ -36,3 +36,8 @@ mod 'ubuntu_pkgs',
 
 mod 'consul_haproxy',
   :git => 'https://github.com/shokunin/consul_haproxy.git'
+
+mod 'archive',
+  :git => 'git@github.com:voxpupuli/puppet-archive.git',
+  :ref => 'v0.5.1'
+

@@ -2,7 +2,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell",
-    inline: "sudo apt-get -y install puppet"
+    inline: "DEBIAN_FRONTEND=noninteractive sudo apt-get -y install puppet"
 
   config.vm.define "nomaster" do |server|
     server.vm.box = "ubuntu/xenial64"
@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     server.vm.network "forwarded_port", guest: 2112, host: 2112
     server.vm.network "private_network", ip: "172.16.3.101"
     server.vm.synced_folder "puppet/modules", "/tmp/vagrant-puppet/puppet/modules"
+    server.vm.synced_folder "puppet/ext", "/tmp/vagrant-puppet/ext"
     server.vm.provision :puppet do |puppet|
       puppet.hiera_config_path = "puppet/ext/hiera.yaml"
       puppet.manifests_path = "puppet/manifests"

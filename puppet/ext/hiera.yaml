@@ -2,7 +2,7 @@
 :backends:
   - yaml
 :yaml:
-  :datadir: /vagrant/puppet/ext/hieradata
+  :datadir: /tmp/vagrant-puppet/ext/hieradata
 :hierarchy:
   - "%{::hostname}"
   - "common"
